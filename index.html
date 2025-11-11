@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>George's Gallery | Modern Photo Gallery</title>
+  <title>George's Gallery | Photo Collection</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Apple-inspired gallery with beautiful animations and modern design.">
+  <meta name="description" content="George's personal photo gallery with modern design and smooth animations.">
   
   <!-- Favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,540 +12,1485 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Fonts & Icons -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#007aff',
-            secondary: '#5856d6',
-            accent: '#ff2d55',
-            appleGray: {
-              50: '#f5f5f7',
-              100: '#e8e8ed',
-              200: '#d2d2d7',
-              300: '#c2c2c8',
-              400: '#a2a2a8',
-              500: '#86868b',
-              600: '#69696d',
-              700: '#515154',
-              800: '#3a3a3c',
-              900: '#1d1d1f',
-            },
-            dark: {
-              900: '#121212',
-              800: '#1e1e1e',
-              700: '#2a2a2a',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.8s ease-out forwards',
-            'slide-up': 'slideUp 0.8s ease-out forwards',
-            'scale-in': 'scaleIn 0.6s ease-out forwards',
-            'float': 'float 6s ease-in-out infinite',
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
-    /* Enhanced animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      33% { transform: translateY(-6px) rotate(1deg); }
-      66% { transform: translateY(4px) rotate(-1deg); }
+    /* ============================================
+       RESET & BASE STYLES
+       ============================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
-    .animate-fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-    .animate-slide-up {
-      animation: slideUp 0.8s ease-out forwards;
-    }
-    .animate-scale-in {
-      animation: scaleIn 0.6s ease-out forwards;
-    }
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
-    .delay-600 { animation-delay: 0.6s; }
-    .delay-700 { animation-delay: 0.7s; }
-    
-    /* Enhanced glass card effect */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.125);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .glass-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-      background: rgba(255, 255, 255, 0.8);
-    }
-    .dark .glass-card {
-      background: rgba(25, 25, 25, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .dark .glass-card:hover {
-      background: rgba(35, 35, 35, 0.7);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    :root {
+      /* Lando Norris Color Palette */
+      --neon-yellow: #D2FF00;
+      --dark-olive: #282C20;
+      --off-white: #F4F4ED;
+      --almost-black: #111112;
+      --dark-olive-alt: #343A26;
+      --cyan-accent: #00D9FF;
+      --pink-accent: #FF006E;
+      --orange-accent: #FF6B35;
+      
+      /* Typography */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      
+      /* Easing - Exact Lando Norris curves */
+      --ease-smooth: cubic-bezier(0.65, 0.05, 0, 1);
+      --ease-bouncy: cubic-bezier(0.19, 1, 0.22, 1);
     }
     
-    /* Apple-like gradients */
-    .hero-gradient {
-      background: linear-gradient(135deg, rgba(0,122,255,0.1) 0%, rgba(0,122,255,0.03) 50%, rgba(0,122,255,0) 100%);
-    }
-    .dark .hero-gradient {
-      background: linear-gradient(135deg, rgba(0,122,255,0.08) 0%, rgba(0,122,255,0.02) 50%, rgba(0,0,0,0) 100%);
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
     
-    /* Apple-style buttons */
-    .btn-hover {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 极px rgba(0, 122, 255, 0.2);
-    }
-    .btn-hover:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0, 122, 255, 0.3);
-    }
-    
-    /* Apple-like navbar */
-    .navbar {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .dark .navbar {
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--dark-olive);
+      color: var(--off-white);
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
     }
     
-    /* Text highlight effect */
-    .text-highlight {
+    /* ============================================
+       ANIMATED BACKGROUND PATTERN
+       ============================================ */
+    .background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    
+    .organic-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.08;
+      filter: blur(80px);
+      border-radius: 50%;
+      animation: float-organic 25s ease-in-out infinite;
+      will-change: transform;
+    }
+    
+    .shape-1 {
+      width: 700px;
+      height: 700px;
+      background: var(--neon-yellow);
+      top: -250px;
+      left: -250px;
+      animation-duration: 28s;
+    }
+    
+    .shape-2 {
+      width: 900px;
+      height: 900px;
+      background: var(--cyan-accent);
+      top: 25%;
+      right: -350px;
+      animation-duration: 35s;
+      animation-delay: -8s;
+    }
+    
+    .shape-3 {
+      width: 600px;
+      height: 600px;
+      background: var(--pink-accent);
+      bottom: -200px;
+      left: 15%;
+      animation-duration: 32s;
+      animation-delay: -15s;
+    }
+    
+    .shape-4 {
+      width: 500px;
+      height: 500px;
+      background: var(--orange-accent);
+      top: 45%;
+      left: 45%;
+      animation-duration: 26s;
+      animation-delay: -20s;
+    }
+    
+    .shape-5 {
+      width: 450px;
+      height: 450px;
+      background: var(--neon-yellow);
+      top: 70%;
+      right: 20%;
+      animation-duration: 30s;
+      animation-delay: -12s;
+    }
+    
+    @keyframes float-organic {
+      0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      25% {
+        transform: translate(40px, -60px) scale(1.15) rotate(5deg);
+      }
+      50% {
+        transform: translate(-30px, -100px) scale(0.85) rotate(-3deg);
+      }
+      75% {
+        transform: translate(50px, -40px) scale(1.08) rotate(4deg);
+      }
+    }
+    
+    /* Flowing lines SVG background */
+    .flowing-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.12;
+    }
+    
+    .flowing-lines svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .flow-path {
+      fill: none;
+      stroke: var(--off-white);
+      stroke-width: 1.5;
+      opacity: 0.25;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: dash 30s linear infinite;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    
+    h1 {
+      font-size: clamp(48px, 8vw, 120px);
+      color: var(--off-white);
+    }
+    
+    h2 {
+      font-size: clamp(32px, 5vw, 86px);
+      color: var(--off-white);
+    }
+    
+    h3 {
+      font-size: clamp(24px, 3vw, 48px);
+      color: var(--off-white);
+    }
+    
+    .text-neon {
+      color: var(--neon-yellow);
       position: relative;
       display: inline-block;
-      z-index: 1;
     }
-    .text-highlight::after {
+    
+    .text-neon::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--neon-yellow);
+      opacity: 0.2;
+      filter: blur(8px);
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, var(--neon-yellow), var(--cyan-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+    
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 40px;
+      background: rgba(40, 44, 32, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(244, 244, 237, 0.08);
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .navbar.scrolled {
+      padding: 15px 40px;
+      background: rgba(40, 44, 32, 0.95);
+      border-bottom-color: rgba(210, 255, 0, 0.15);
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--neon-yellow);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+      transition: all 0.6s var(--ease-bouncy);
+      position: relative;
+    }
+    
+    .logo::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      background: var(--neon-yellow);
+      opacity: 0;
+      filter: blur(15px);
+      transition: opacity 0.6s var(--ease-bouncy);
+      z-index: -1;
+    }
+    
+    .logo:hover::before {
+      opacity: 0.2;
+    }
+    
+    .logo:hover {
+      transform: scale(1.08) rotate(-2deg);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--off-white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .nav-link::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-yellow);
+      transition: width 0.75s var(--ease-smooth);
+    }
+    
+    .nav-link:hover {
+      color: var(--neon-yellow);
+      transform: translateY(-2px);
+    }
+    
+    .nav-link:hover::after {
       width: 100%;
-      height: 30%;
-      background: linear-gradient(90deg, rgba(0,122,255,0.2) 0%, rgba(0,122,255,0.1) 100%);
-      z-index: -1;
-      transition: height 0.3s ease;
-      border-radius: 2px;
-    }
-    .text-highlight:hover::after {
-      height: 105%;
     }
     
-    /* Feature icon styles */
-    .feature-icon {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .glass-card:hover .feature-icon {
-      transform: scale(1.1) rotate(5deg);
+    .btn-primary {
+      background: var(--neon-yellow);
+      color: var(--dark-olive);
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.75s var(--ease-smooth);
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
     }
     
-    /* Decorative elements */
-    .decorative-circle {
+    .btn-primary::before {
+      content: '';
       position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      opacity: 0.15;
-      filter: blur(40px);
-      z-index: -1;
+      transform: translate(-50%, -50%);
+      transition: width 0.75s var(--ease-smooth), height 0.75s var(--ease-smooth);
     }
     
-    /* Logo styling */
-    .logo {
-      transition: all 0.3s ease;
-    }
-    .logo:hover {
-      transform: scale(1.1);
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
     }
     
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 122, 255, 0.3);
-      border-radius: 4px;
-    }
-    .dark ::-webkit-scrollbar-thumb {
-      background: rgba(100, 100, 255, 0.3);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 122, 255, 0.5);
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(210, 255, 0, 0.5);
     }
     
-    /* Stats counter */
-    .stat-number {
-      font-variant-numeric: tabular-nums;
+    .btn-primary:active {
+      transform: translateY(-2px) scale(1.01);
     }
     
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+    .menu-toggle {
+      display: none;
+      background: var(--orange-accent);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
     }
     
-    /* Hero section animation */
-    .hero-pattern {
-      background-image: radial-gradient(rgba(0, 122, 255, 0.1) 2px, transparent 2px);
-      background-size: 40px 40px;
+    .menu-toggle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-100%);
+      transition: transform 0.75s var(--ease-smooth);
     }
     
-    /* Icon box styling */
-    .icon-box {
+    .menu-toggle:hover::before {
+      transform: translateX(0);
+    }
+    
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--dark-olive);
+      transition: all 0.3s var(--ease-smooth);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .menu-toggle:hover {
+      transform: scale(1.08) rotate(5deg);
+    }
+    
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
+      padding: 120px 40px 80px;
+      z-index: 10;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      max-width: 1200px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(210, 255, 0, 0.12);
+      border: 1px solid rgba(210, 255, 0, 0.25);
+      border-radius: 30px;
+      color: var(--neon-yellow);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 40px;
+      animation: fade-slide-up 1.2s var(--ease-smooth) forwards;
+      opacity: 0;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .hero-badge:hover {
+      background: rgba(210, 255, 0, 0.2);
+      border-color: rgba(210, 255, 0, 0.4);
+      transform: translateY(-3px) scale(1.05);
+    }
+    
+    .hero h1 {
+      margin-bottom: 30px;
+      animation: fade-slide-up 1.2s var(--ease-smooth) 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(18px, 2.5vw, 32px);
+      color: var(--off-white);
+      opacity: 0.8;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      font-weight: 300;
+      line-height: 1.5;
+      animation: fade-slide-up 1.2s var(--ease-smooth) 0.4s forwards;
+      opacity: 0;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fade-slide-up 1.2s var(--ease-smooth) 0.6s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fade-slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* ============================================
+       STATS SECTION
+       ============================================ */
+    .stats {
+      position: relative;
+      z-index: 10;
+      padding: 80px 40px;
+      background: rgba(52, 58, 38, 0.25);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(244, 244, 237, 0.05);
+      border-bottom: 1px solid rgba(244, 244, 237, 0.05);
+    }
+    
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 50px 30px;
+      background: rgba(244, 244, 237, 0.04);
+      border: 1px solid rgba(244, 244, 237, 0.08);
       border-radius: 16px;
-      background: rgba(0, 122, 255, 0.1);
-      margin-bottom: 16px;
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
     }
     
-    /* Button alignment fix */
-    .btn-container {
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-yellow), var(--cyan-accent), var(--pink-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.75s var(--ease-smooth);
+    }
+    
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(210, 255, 0, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.75s var(--ease-smooth);
+    }
+    
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .stat-card:hover::after {
+      opacity: 1;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      background: rgba(244, 244, 237, 0.08);
+      border-color: rgba(210, 255, 0, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+    
+    .stat-number {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--neon-yellow);
+      font-family: var(--font-display);
+      margin-bottom: 15px;
+      line-height: 1;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .stat-card:hover .stat-number {
+      transform: scale(1.1);
+      text-shadow: 0 0 30px rgba(210, 255, 0, 0.5);
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--off-white);
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .stat-card:hover .stat-label {
+      opacity: 1;
+      color: var(--neon-yellow);
+    }
+    
+    /* ============================================
+       CONTENT SECTIONS
+       ============================================ */
+    .section {
+      position: relative;
+      z-index: 10;
+      padding: 120px 40px;
+    }
+    
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .section-title {
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent);
+      animation: title-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes title-glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    
+    .section-description {
+      font-size: 18px;
+      color: var(--off-white);
+      opacity: 0.7;
+      max-width: 700px;
+      margin: 35px auto 0;
+      line-height: 1.8;
+    }
+    
+    /* ============================================
+       FEATURE CARDS
+       ============================================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      padding: 50px 40px;
+      background: rgba(244, 244, 237, 0.03);
+      border: 1px solid rgba(244, 244, 237, 0.08);
+      border-radius: 20px;
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 0;
+      background: linear-gradient(180deg, var(--neon-yellow), var(--cyan-accent));
+      transition: height 0.75s var(--ease-smooth);
+    }
+    
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(210, 255, 0, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.75s var(--ease-smooth);
+    }
+    
+    .feature-card:hover::before {
+      height: 100%;
+    }
+    
+    .feature-card:hover::after {
+      opacity: 1;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      background: rgba(244, 244, 237, 0.07);
+      border-color: rgba(210, 255, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(210, 255, 0, 0.12);
+      border-radius: 16px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      font-size: 36px;
+      color: var(--neon-yellow);
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--neon-yellow);
+      opacity: 0;
+      transition: opacity 0.75s var(--ease-smooth);
+    }
+    
+    .feature-card:hover .feature-icon {
+      transform: scale(1.15) rotate(8deg);
+      background: rgba(210, 255, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(210, 255, 0, 0.3);
+    }
+    
+    .feature-card:hover .feature-icon::before {
+      opacity: 0.1;
+    }
+    
+    .feature-title {
+      font-size: 26px;
+      margin-bottom: 18px;
+      color: var(--off-white);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .feature-card:hover .feature-title {
+      color: var(--neon-yellow);
+      transform: translateX(5px);
+    }
+    
+    .feature-description {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--off-white);
+      opacity: 0.7;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .feature-card:hover .feature-description {
+      opacity: 0.9;
+    }
+    
+    /* ============================================
+       IMAGE GALLERY CARDS
+       ============================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 35px;
+    }
+    
+    .gallery-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .gallery-card::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 4px solid transparent;
+      border-radius: 16px;
+      transition: all 0.75s var(--ease-smooth);
+      z-index: 2;
+      opacity: 0;
+    }
+    
+    .gallery-card:nth-child(6n+1)::before {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 30px var(--cyan-accent);
+    }
+    
+    .gallery-card:nth-child(6n+2)::before {
+      border-color: var(--pink-accent);
+      box-shadow: 0 0 30px var(--pink-accent);
+    }
+    
+    .gallery-card:nth-child(6n+3)::before {
+      border-color: var(--orange-accent);
+      box-shadow: 0 0 30px var(--orange-accent);
+    }
+    
+    .gallery-card:nth-child(6n+4)::before {
+      border-color: var(--neon-yellow);
+      box-shadow: 0 0 30px var(--neon-yellow);
+    }
+    
+    .gallery-card:nth-child(6n+5)::before {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 30px var(--cyan-accent);
+    }
+    
+    .gallery-card:nth-child(6n+6)::before {
+      border-color: var(--pink-accent);
+      box-shadow: 0 0 30px var(--pink-accent);
+    }
+    
+    .gallery-card:hover::before {
+      opacity: 1;
+      inset: 0;
+    }
+    
+    .gallery-card:hover {
+      transform: scale(1.08) translateY(-10px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+    
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.75s var(--ease-smooth);
+    }
+    
+    .gallery-card:hover img {
+      transform: scale(1.15);
+      filter: brightness(1.1) contrast(1.05);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17, 17, 18, 0.9), transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 35px;
+      opacity: 0;
+      transition: all 0.75s var(--ease-smooth);
+      z-index: 1;
+    }
+    
+    .gallery-card:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-title {
+      color: var(--neon-yellow);
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transform: translateY(20px);
+      transition: all 0.75s var(--ease-smooth);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .gallery-card:hover .gallery-title {
+      transform: translateY(0);
+    }
+    
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      position: relative;
+      z-index: 10;
+      padding: 80px 40px 50px;
+      background: rgba(17, 17, 18, 0.6);
+      border-top: 1px solid rgba(244, 244, 237, 0.1);
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      transition: all 0.6s var(--ease-bouncy);
+      display: inline-block;
+    }
+    
+    .footer-logo:hover {
+      transform: scale(1.1) rotate(-3deg);
+      text-shadow: 0 0 40px rgba(210, 255, 0, 0.6);
+    }
+    
+    .footer-text {
+      color: var(--off-white);
+      opacity: 0.6;
+      font-size: 15px;
+      margin-bottom: 35px;
+      line-height: 1.7;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 35px;
+      justify-content: center;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-link {
+      color: var(--off-white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.75s var(--ease-smooth);
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--neon-yellow);
+      transition: width 0.75s var(--ease-smooth);
+    }
+    
+    .footer-link:hover {
+      color: var(--neon-yellow);
+    }
+    
+    .footer-link:hover::after {
+      width: 100%;
+    }
+    
+    .footer-copyright {
+      color: var(--off-white);
+      opacity: 0.4;
+      font-size: 12px;
+      margin-top: 35px;
+      padding-top: 35px;
+      border-top: 1px solid rgba(244, 244, 237, 0.08);
+    }
+    
+    /* ============================================
+       SCROLL ANIMATIONS
+       ============================================ */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(70px);
+      transition: all 1.2s var(--ease-smooth);
+    }
+    
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .hero {
+        padding: 100px 20px 60px;
+      }
+      
+      .section {
+        padding: 80px 20px;
+      }
+      
+      .stats {
+        padding: 60px 20px;
+      }
+      
+      .stats-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
+      
+      .shape {
+        filter: blur(60px);
+      }
+    }
+    
+    /* ============================================
+       CUSTOM SCROLLBAR
+       ============================================ */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--dark-olive);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(210, 255, 0, 0.3);
+      border-radius: 6px;
+      border: 2px solid var(--dark-olive);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(210, 255, 0, 0.5);
+    }
+    
+    /* ============================================
+       LOADING ANIMATION
+       ============================================ */
+    @keyframes fadeInPage {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    body {
+      animation: fadeInPage 0.8s ease-out;
     }
   </style>
 </head>
-<body class="bg-appleGray-50 dark:bg-dark-900 text-appleGray-900 dark:text-appleGray-100 font-sans min-h-screen transition-colors duration-500">
-  <!-- Decorative background elements -->
-  <div class="decorative-circle w-80 h-80 bg-primary -top-40 -left-40 animate-float"></div>
-  <div class="decorative-circle w-96 h-96 bg-secondary top-1/2 -right-40 animate-float delay-300" style="animation-duration: 8s;"></div>
-  <div class="decorative-circle w-64 h-64 bg-accent bottom-0 left-1/3 animate-float delay-700" style="animation-duration: 9s;"></div>
-
-  <!-- Apple-like navbar -->
-  <nav class="navbar fixed w-full z-50 py-4 px-6 sm:px-8 lg:px-12">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="#" class="text-xl font-semibold flex items-center">
-        <span class="text-primary mr-2"><i class="fa-solid fa-images"></i></span>
-        <span>George's Gallery</span>
-      </a>
-      <div class="hidden md:flex space-x-8">
-        <a href="#features" class="text-sm hover:text-primary transition-colors duration-300">Features</a>
-        <a href="#howto" class="text-sm hover:text-primary transition-colors duration-300">How To Use</a>
-        <a href="#tech" class="text-sm hover:text-primary transition-colors duration-300">Technology</a>
-        <a href="https://new-2-3ju9.onrender.com" class="text-sm text-primary hover:opacity-80 transition-colors duration-300">View Gallery</a>
+<body>
+  <!-- Animated Background -->
+  <div class="organic-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="shape shape-5"></div>
+  </div>
+  
+  <!-- Flowing Lines SVG -->
+  <div class="flowing-lines">
+    <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+      <path class="flow-path" d="M-100,200 Q400,100 800,300 T1600,400 Q1800,500 2000,300"/>
+      <path class="flow-path" d="M-100,500 Q300,400 700,600 T1500,700 Q1700,800 2000,600" style="animation-delay: -10s;"/>
+      <path class="flow-path" d="M-100,800 Q500,700 900,900 T1700,1000 Q1900,1100 2100,900" style="animation-delay: -20s;"/>
+      <path class="flow-path" d="M-100,350 Q450,250 850,450 T1650,550 Q1850,650 2050,450" style="animation-delay: -5s;"/>
+    </svg>
+  </div>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">GEORGE</a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="https://new-2-3ju9.onrender.com" class="btn-primary">View Gallery</a>
       </div>
-      <button id="theme-toggle" class="p-2 rounded-full hover:bg-appleGray-200 dark:hover:bg-appleGray-800 transition-colors duration-300">
-        <i class="fa-solid fa-moon dark:hidden"></i>
-        <i class="fa-solid fa-sun hidden dark:block"></i>
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </nav>
-
-  <div class="min-h-screen flex flex-col pt-16">
-    <!-- Header -->
-    <header class="py-24 px-4 sm:px-6 lg:px-8 animate-slide-up">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-flex items-center justify-center mb-6 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-          <i class="fa-solid fa-rocket mr-2"></i> Modern Photo Gallery
-        </div>
-        <h1 class="text-5xl sm:text-6xl font-bold mb-5 tracking-tight">George's <span class="text-highlight">Gallery</span></h1>
-        <div class="h-px w-24 mx-auto bg-appleGray-300 dark:bg-appleGray-700 mb-6"></div>
-        <p class="text-xl sm:text-2xl text-appleGray-500 dark:text-appleGray-400 font-light max-w-2xl mx-auto tracking-wide leading-relaxed">
-          A place for your memories. Secure, beautiful, and permanent.
-        </p>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        📸 Modern Photo Gallery
       </div>
-    </header>
-
-    <!-- Stats Section -->
-    <div class="px-4 sm:px-6 lg:px-8 mb-16 animate-fade-in delay-300">
-      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="glass-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-primary stat-number">25GB</div>
-          <div class="text-appleGray-500 dark:text-appleGray-400 mt-2">Free Storage</div>
-        </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-primary stat-number">100%</div>
-          <div class="text-appleGray-500 dark:text-appleGray-400 mt-2">Uptime</div>
-        </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-primary stat-number">0$</div>
-          <div class="text-appleGray-500 dark:text-appleGray-400 mt-2">Cost</div>
-        </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-primary stat-number">1-Click</div>
-          <div class="text-appleGray-500 dark:text-appleGray-400 mt-2">Downloads</div>
-        </div>
+      <h1>
+        <span class="text-neon">Capturing</span> Moments,<br>
+        Preserving <span class="text-gradient">Memories</span>
+      </h1>
+      <p class="hero-subtitle">
+        A place for your memories. Secure, beautiful, and permanent. Experience photography like never before.
+      </p>
+      <div class="hero-cta">
+        <a href="https://new-2-3ju9.onrender.com" class="btn-primary">Explore Gallery</a>
       </div>
     </div>
-
-    <!-- Main Content -->
-    <main class="flex-grow px-4 sm:px-6 lg:px-8 py-8">
-      <div class="max-w-6xl mx-auto">
-        <!-- Hero Section -->
-        <div class="glass-card rounded-3xl p-10 sm:p-12 mb-16 hero-gradient overflow-hidden animate-scale-in relative">
-          <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary rounded-full opacity-5 blur-3xl"></div>
-          <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary rounded-full opacity-5 blur-3xl"></div>
-          
-          <div class="text-center relative z-10">
-            <div class="flex justify-center mb-8">
-              <div class="icon-box">
-                <i class="fa-solid fa-images text-primary text-3xl"></i>
-              </div>
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-semibold mb-8">Your Memories, Beautifully Preserved</h2>
-            <p class="text-xl mb-10 text-appleGray-600 dark:text-appleGray-300 max-w-3xl mx-auto leading-relaxed">
-              A modern, secure photo gallery with cloud storage, admin panel, and beautiful UI.
-              Fast, global, and completely free for personal use.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10 btn-container">
-              <a href="https://new-2-3ju9.onrender.com" class="inline-flex items-center justify-center bg-primary hover:bg-blue-600 text-white font-medium rounded-full px-8 py-4 text-lg tracking-wide btn-hover transform transition-transform duration-300">
-                <i class="fa-solid fa-images mr-3"></i> Explore Gallery
-              </a>
-              <a href="https://github.com/N0v4ont0p/new-2/" class="inline-flex items-center justify-center bg-transparent border border-appleGray-300 dark:border-appleGray-700 text-appleGray-700 dark:text-appleGray-300 font-medium rounded-full px-8 py-4 text-lg tracking-wide btn-hover transform transition-transform duration-300">
-                <i class="fa-solid fa-code mr-3"></i> Source Code
-              </a>
-            </div>
-            <div class="text-sm text-appleGray-500 dark:text-appleGray-400">
-              <i class="fa-solid fa-bolt mr-1"></i> No registration required • Free to use • Updated daily
-            </div>
-          </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-card scroll-reveal">
+        <div class="stat-number">25GB</div>
+        <div class="stat-label">Free Storage</div>
+      </div>
+      <div class="stat-card scroll-reveal">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-card scroll-reveal">
+        <div class="stat-number">0$</div>
+        <div class="stat-label">Cost</div>
+      </div>
+      <div class="stat-card scroll-reveal">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Photos</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="section-container">
+      <div class="section-header scroll-reveal">
+        <h2 class="section-title">Powerful Features</h2>
+        <p class="section-description">
+          Built with modern technology and designed for performance. Every detail crafted for the perfect photo experience.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-title">Visual Perfection</h3>
+          <p class="feature-description">
+            Minimal, contemporary design with edge-to-edge images, smooth gradients, and interactive animations that make every photo pop.
+          </p>
         </div>
-
-        <!-- Features Grid -->
-        <div id="features" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-          <div class="glass-card rounded-2xl p-7 animate-slide-up delay-100">
-            <div class="flex items-center mb-5">
-              <div class="icon-box">
-                <i class="fa-solid fa-palette text-primary text-xl"></i>
-              </div>
-              <h3 class="text-2xl font-semibold ml-4">Visual Perfection</h3>
-            </div>
-            <p class="text-appleGray-600 dark:text-appleGray-400 leading-relaxed mb-4">
-              Minimal, contemporary grid. Edge-to-edge images, soft gradients, and interactive microinteractions make every photo pop.
-            </p>
-          </div>
-
-          <div class="glass-card rounded-2xl p-7 animate-slide-up delay-200">
-            <div class="flex items-center mb-5">
-              <div class="icon-box">
-                <i class="fa-solid fa-cloud text-primary text-xl"></i>
-              </div>
-              <h3 class="text-2xl font-semibold ml-4">Permanent Cloud Storage</h3>
-            </div>
-            <p class="text-appleGray-600 dark:text-appleGray-400 leading-relaxed mb-4">
-              Photos are safe from server restarts and redeployments, stored on Cloudinary with CDN for global speed. 25GB free.
-            </p>
-          </div>
-
-          <div class="glass-card rounded-2xl p-7 animate-slide-up delay-300">
-            <div class="flex items-center mb-5">
-              <div class="icon-box">
-                <i class="fa-solid fa-lock text-primary text-xl"></i>
-              </div>
-              <h3 class="text-2xl font-semibold ml-4">Secure Admin</h3>
-            </div>
-            <p class="text-appleGray-600 dark:text-appleGray-400 leading-relaxed mb-4">
-              Password-protected panel at <b>/admin</b> lets you upload, batch manage, and delete photos with instant feedback.
-            </p>
-          </div>
-
-          <div class="glass-card rounded-2xl p-7 animate-slide-up delay-400">
-            <div class="flex items-center mb-5">
-              <div class="icon-box">
-                <i class="fa-solid fa-shield-alt text-primary text-xl"></i>
-              </div>
-              <h3 class="text-2xl font-semibold ml-4">Bulletproof Reliability</h3>
-            </div>
-            <p class="text-appleGray-600 dark:text-appleGray-400 leading-relaxed mb-4">
-              Fallback mechanisms and metadata backup mean your gallery never loses data. Admin-only controls keep things safe.
-            </p>
-          </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">☁️</div>
+          <h3 class="feature-title">Cloud Storage</h3>
+          <p class="feature-description">
+            Photos stored securely on Cloudinary with global CDN delivery. 25GB free storage with bulletproof reliability.
+          </p>
         </div>
-
-        <!-- How To Use Section -->
-        <div id="howto" class="glass-card rounded-3xl p-10 sm:p-12 mb-16 animate-scale-in delay-600">
-          <h2 class="text-3xl sm:text-4xl font-semibold text-center mb-12">How To Use</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="text-center">
-              <div class="icon-box mx-auto">
-                <i class="fa-solid fa-eye text-primary text-2xl"></i>
-              </div>
-              <h3 class="text-xl font-medium mb-3">Public Gallery</h3>
-              <p class="text-appleGray-600 dark:text-appleGray-400">Browse all photos in a stunning grid. Click any image for a full-screen modal.</p>
-            </div>
-            <div class="text-center">
-              <div class="icon-box mx-auto">
-                <i class="fa-solid fa-user-lock text-primary text-2xl"></i>
-              </div>
-              <h3 class="text-xl font-medium mb-3">Admin Panel</h3>
-              <p class="text-appleGray-600 dark:text-appleGray-400">Go to <b>/admin</b> to upload, manage, and delete photos with password protection.</p>
-            </div>
-          </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Secure Admin</h3>
+          <p class="feature-description">
+            Password-protected admin panel for uploading, managing, and organizing your photos with instant feedback.
+          </p>
         </div>
-
-        <!-- Technology Section -->
-        <div id="tech" class="glass-card rounded-3xl p-10 sm:p-12 mb-16 animate-scale-in delay-500">
-          <h2 class="text-3xl sm:text-4xl font-semibold text-center mb-12">The Technology Behind It</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="icon-box mx-auto">
-                <i class="fa-solid fa-desktop text-primary text-2xl"></i>
-              </div>
-              <h3 class="text-xl font-medium mb-3">Frontend</h3>
-              <p class="text-appleGray-600 dark:text-appleGray-400">React.js SPA with CSS Grid and modal viewer</p>
-            </div>
-            <div class="text-center">
-              <div class="icon-box mx-auto">
-                <i class="fa-solid fa-server text-primary text-2xl"></i>
-              </div>
-              <h3 class="text-xl font-medium mb-3">Backend</h3>
-              <p class="text-appleGray-600 dark:text-appleGray-400">Flask API with CORS and Cloudinary SDK</p>
-            </div>
-            <div class="text-center">
-              <div class="icon-box mx-auto">
-                <i class="fa-solid fa-database text-primary text-2xl"></i>
-              </div>
-              <h3 class="text-xl font-medium mb-3">Storage</h3>
-              <p class="text-appleGray-600 dark:text-appleGray-400">Cloudinary with fallback and JSON metadata</p>
-            </div>
-          </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Lightning Fast</h3>
+          <p class="feature-description">
+            Optimized performance with lazy loading, CDN delivery, and modern web technologies for instant access.
+          </p>
         </div>
-
-        <!-- Final CTA -->
-        <div class="text-center mb-16 animate-fade-in delay-700">
-          <h3 class="text-2xl sm:text-3xl font-medium mb-8">Ready to explore your gallery?</h3>
-          <div class="flex flex-col sm:flex-row justify-center gap-4 btn-container">
-            <a href="https://new-2-3ju9.onrender.com" class="inline-flex items-center justify-center bg-primary hover:bg-blue-600 text-white font-medium rounded-full px-10 py-4 text-lg tracking-wide btn-hover transform transition-transform duration-300">
-              <i class="fa-solid fa-bolt mr-3"></i> Launch Gallery Now
-            </a>
-            <a href="https://github.com/N0v4ont0p/new-2/" class="inline-flex items-center justify-center bg-transparent border border-appleGray-300 dark:border-appleGray-700 text-appleGray-700 dark:text-appleGray-300 font-medium rounded-full px-10 py-4 text-lg tracking-wide btn-hover transform transition-transform duration-300">
-              <i class="fa-solid fa-star mr-3"></i> Star on GitHub
-            </a>
-          </div>
-          <p class="text-appleGray-500 dark:text-appleGray-400 text-sm mt-6">
-            <i class="fa-solid fa-envelope mr-1"></i> Contact: georgehu67@gmail.com
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Responsive Design</h3>
+          <p class="feature-description">
+            Perfect on every device. Seamless experience from mobile to desktop with adaptive layouts.
+          </p>
+        </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Easy to Use</h3>
+          <p class="feature-description">
+            Intuitive interface with one-click downloads, full-screen viewing, and simple navigation.
           </p>
         </div>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-12 px-4 sm:px-6 lg:px-8 text-center text-appleGray-500 dark:text-appleGray-500 text-sm tracking-wide">
-      <div class="max-w-4xl mx-auto border-t border-appleGray-200 dark:border-appleGray-800 pt-8">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div class="flex items-center mb-4 md:mb-0">
-            <span class="text-primary mr-2"><i class="fa-solid fa-images"></i></span>
-            <span class="text-xl font-semibold">George's Gallery</span>
-          </div>
-          <div class="flex space-x-6">
-            <a href="#" class="hover:text-primary transition-colors duration-300"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="hover:text-primary transition-colors duration-300"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="hover:text-primary transition-colors duration-300"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </section>
+  
+  <!-- Gallery Preview Section -->
+  <section class="section" id="gallery">
+    <div class="section-container">
+      <div class="section-header scroll-reveal">
+        <h2 class="section-title">Gallery Showcase</h2>
+        <p class="section-description">
+          Explore stunning photography organized beautifully. Each image tells a story.
+        </p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Mountain landscape">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Landscapes</div>
           </div>
         </div>
-        <p>Created by George</p>
-        <p class="mt-2">© 2023 George's Gallery. All rights reserved.</p>
+        
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Nature photography">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Nature</div>
+          </div>
+        </div>
+        
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop" alt="Mountain peaks">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Adventures</div>
+          </div>
+        </div>
+        
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Forest path">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Forests</div>
+          </div>
+        </div>
+        
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop" alt="Sunset">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Sunsets</div>
+          </div>
+        </div>
+        
+        <div class="gallery-card scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=600&fit=crop" alt="Wilderness">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Wilderness</div>
+          </div>
+        </div>
       </div>
-    </footer>
-  </div>
-
-  <!-- Theme toggle and animations script -->
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="section-container">
+      <div class="section-header scroll-reveal">
+        <h2 class="section-title">Built for Excellence</h2>
+        <p class="section-description">
+          Powered by modern web technologies and designed with attention to every detail. React.js frontend, Flask backend, Cloudinary storage, and beautiful animations throughout.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">⚛️</div>
+          <h3 class="feature-title">React.js</h3>
+          <p class="feature-description">
+            Modern SPA with component-based architecture for smooth, reactive user experience.
+          </p>
+        </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">🐍</div>
+          <h3 class="feature-title">Flask API</h3>
+          <p class="feature-description">
+            Robust Python backend with RESTful API design and secure authentication.
+          </p>
+        </div>
+        
+        <div class="feature-card scroll-reveal">
+          <div class="feature-icon">☁️</div>
+          <h3 class="feature-title">Cloudinary</h3>
+          <p class="feature-description">
+            Enterprise-grade cloud storage with automatic optimization and global CDN.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">George's Gallery</div>
+      <p class="footer-text">
+        Capturing moments, preserving memories. Built with passion and modern technology.
+      </p>
+      <div class="footer-links">
+        <a href="#features" class="footer-link">Features</a>
+        <a href="#gallery" class="footer-link">Gallery</a>
+        <a href="#about" class="footer-link">About</a>
+        <a href="https://new-2-3ju9.onrender.com" class="footer-link">View Gallery</a>
+      </div>
+      <div class="footer-copyright">
+        © 2024 George's Gallery. All rights reserved. | Contact: georgehu67@gmail.com
+      </div>
+    </div>
+  </footer>
+  
+  <!-- JavaScript -->
   <script>
-    // Force scroll to top on page load
-    window.onload = function() {
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 0);
+    // Navbar scroll effect with smooth transitions
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Scroll reveal animation with Intersection Observer
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -80px 0px'
     };
     
-    // Also handle back/forward navigation
-    window.onpageshow = function(event) {
-      if (event.persisted) {
-        window.scrollTo(0, 0);
-      }
-    };
-
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // Set initial theme
-    if (localStorage.getItem('theme') === 'dark' || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme'))) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-
-    // Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
+          entry.target.classList.add('revealed');
         }
       });
-    }, { threshold: 0.1 });
-
-    // Observe all elements that need animation
-    document.querySelectorAll('.glass-card, .hero-gradient').forEach((el) => {
+    }, observerOptions);
+    
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
       observer.observe(el);
     });
-
-    // Smooth hover effects for all buttons
-    document.querySelectorAll('a').forEach(link => {
-      if (link.classList.contains('btn-hover')) {
-        link.addEventListener('mouseenter', () => {
-          link.style.transform = 'translateY(-3px) scale(1.02)';
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+    
+    // Menu toggle (for mobile)
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+    
+    // Enhanced parallax effect for organic shapes
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          const shapes = document.querySelectorAll('.shape');
+          
+          shapes.forEach((shape, index) => {
+            const speed = 0.3 + (index * 0.08);
+            const yPos = scrolled * speed;
+            shape.style.transform = `translateY(${yPos}px)`;
+          });
+          
+          ticking = false;
         });
-        link.addEventListener('mouseleave', () => {
-          link.style.transform = 'translateY(0) scale(1)';
-        });
+        
+        ticking = true;
       }
     });
+    
+    // Add stagger delay to scroll reveals
+    document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
+      el.style.transitionDelay = `${(index % 6) * 0.12}s`;
+    });
+    
+    // Cursor trail effect (subtle)
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    
+    // Add hover sound effect simulation (visual feedback)
+    document.querySelectorAll('.btn-primary, .nav-link, .feature-card, .gallery-card').forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        this.style.willChange = 'transform';
+      });
+      
+      el.addEventListener('mouseleave', function() {
+        this.style.willChange = 'auto';
+      });
+    });
+    
+    // Stat number animation on scroll
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          // Add a subtle pulse animation
+          entry.target.style.animation = 'pulse 0.6s ease-out';
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(stat => {
+      statsObserver.observe(stat);
+    });
+    
+    // Add CSS for pulse animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
